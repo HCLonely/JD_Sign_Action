@@ -71,8 +71,8 @@ function sendNotificationIfNeed() {
     console.log('没有执行结果，任务中断!'); return;
   }
 
-  let text = "京东签到_" + dateFormat();
   let desp = fs.readFileSync(result_path, "utf8")
+  let text = "京东签到_" + dateFormat() + '(' + desp.match(/成功[\d]+个, 失败[\d]+个/g)[0] + ')';
 
   // 去除末尾的换行
   let SCKEY = push_key.replace(/[\r\n]/g,"")
