@@ -116,6 +116,7 @@ function main() {
     sendNotificationIfNeed() 
   }).catch((err)=>{
     console.log('脚本文件下载失败，任务中断！');
+    console.error(err);
     fs.writeFileSync(error_path, err, 'utf8')
   })
 
