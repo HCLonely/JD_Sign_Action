@@ -72,8 +72,7 @@ function sendNotificationIfNeed() {
   }
 
   let desp = fs.readFileSync(result_path, "utf8")
-  console.log(desp)
-  let text = "京东签到_" + dateFormat() + '(' + desp.match(/成功[\d]+个, 失败[\d]+个/g)[0] + ')';
+  let text = desp.includes('Cookie失效') ? "京东Cookie失效！" : "京东签到_" + dateFormat() + '(' + desp.match(/成功[\d]+个, 失败[\d]+个/g)[0] + ')';
 
   // 去除末尾的换行
   let SCKEY = push_key.replace(/[\r\n]/g,"")
