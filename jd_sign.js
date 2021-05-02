@@ -84,7 +84,7 @@ function sendNotificationIfNeed() {
     method: 'POST'
   }
 
-  rp.post(options).then(res=>{
+  const qqnotice = rp.post(options).then(res=>{
     const code = res['errno'];
     if (code == 0) {
       console.log("通知发送成功，任务结束！")
@@ -98,6 +98,10 @@ function sendNotificationIfNeed() {
     console.log("通知发送失败，任务中断！")
     fs.writeFileSync(error_path, err, 'utf8')
   })
+  setTimeout(function(){
+    qqnotice.cancel()
+    process.exit()
+  },60000)
 }
 
 function main() {
